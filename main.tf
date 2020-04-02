@@ -1,16 +1,15 @@
 terraform {
   backend "remote" {
-    organization = "hashicorp-rachel"
+    organization = "TFTMM"
     workspaces {
-      name = "sentinel-demo1"
+      name = "sentinel-demo"
     }
   }
 }
 
 provider "aws" {
-  region                  = "us-west-2"
-  profile                 = "default"
-  shared_credentials_file = "~/.aws/credentials"
+  region  = "us-west-2"
+  profile = "default"
 }
 
 
@@ -33,7 +32,4 @@ data "aws_ami" "ubuntu" {
 resource "aws_instance" "web" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
-  tags = {
-    Name = "Wolverine"
-  }
 }
